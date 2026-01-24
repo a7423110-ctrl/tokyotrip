@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>2026 日本櫻花職棒祭</title>
+    <style>
+        :root { --sakura: #ffb7c5; --yokohama: #4a6fa5; --tokyo: #d63031; --bg: #fdfaf4; --paper: #fffef9; --sky: #a6c1ee; }
+        body { font-family: -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif; background: var(--bg); margin: 0; padding-bottom: 40px; color: #2d3436; -webkit-font-smoothing: antialiased; }
+        input[type="radio"] { display: none !important; }
+        header { background: var(--sky); color: white; padding: 18px 15px; text-align: center; border-radius: 0 0 25px 25px; width: 100%; box-sizing: border-box; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        header h2 { margin: 0; font-size: 1.2rem; }
+        .tabs-container { position: sticky; top: 0; width: 100%; background: rgba(253, 250, 244, 0.98); z-index: 100; border-bottom: 1px solid #ebe4d3; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+        .tabs { padding: 12px 10px; display: inline-block; }
+        .tab-btn { display: inline-block; padding: 10px 18px; margin: 0 5px; border: 1.5px solid #e0dcd0; background: white; border-radius: 20px; font-weight: 600; color: #888; font-size: 0.9rem; cursor: pointer; }
+        #tab1:checked ~ .tabs-container label[for="tab1"], #tab2:checked ~ .tabs-container label[for="tab2"], #tab3:checked ~ .tabs-container label[for="tab3"], #tab4:checked ~ .tabs-container label[for="tab4"], #tab5:checked ~ .tabs-container label[for="tab5"], #tab6:checked ~ .tabs-container label[for="tab6"], #tab7:checked ~ .tabs-container label[for="tab7"], #tab8:checked ~ .tabs-container label[for="tab8"], #tab9:checked ~ .tabs-container label[for="tab9"] { background: var(--sakura); color: white; border-color: var(--sakura); box-shadow: 0 4px 8px rgba(255,183,197,0.4); }
+        .container { width: 94%; max-width: 480px; margin: 20px auto; }
+        .card { background: var(--paper); border-radius: 20px; border: 1px solid #f0eadd; overflow: hidden; display: none; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+        #tab1:checked ~ .container #content1, #tab2:checked ~ .container #content2, #tab3:checked ~ .container #content3, #tab4:checked ~ .container #content4, #tab5:checked ~ .container #content5, #tab6:checked ~ .container #content6, #tab7:checked ~ .container #content7, #tab8:checked ~ .container #content8, #tab9:checked ~ .container #content9 { display: block; }
+        .img-box { width: 100%; aspect-ratio: 16 / 9; background: #e8dcca; border-bottom: 4px solid #fff; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .card-content { padding: 22px 20px; }
+        .hotel-tag { background: #f0f7ff; color: #4a6fa5; padding: 10px; border-radius: 10px; font-size: 0.85rem; font-weight: 700; margin-bottom: 15px; border-left: 5px solid #4a6fa5; }
+        .detail-table { width: 100%; border-collapse: separate; border-spacing: 0 12px; }
+        .time-col { width: 65px; font-weight: 700; color: var(--tokyo); font-size: 0.9rem; vertical-align: top; font-family: monospace; }
+        .event-col { padding-left: 12px; border-left: 2px solid #eee; vertical-align: top; }
+        .event-col b { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+        .event-col span { font-size: 0.85rem; color: #636e72; display: block; line-height: 1.5; }
+        .trans-row { background: #fffdf5; border-radius: 10px; padding: 10px; border: 1px dashed #dcd0b0; margin: 5px 0 5px 75px; font-size: 0.8rem; color: #8d8070; font-weight: 600; line-height: 1.4; }
+        .food-tag { color: #d35400; font-weight: bold; font-size: 0.75rem; background: #ffeeda; padding: 3px 7px; border-radius: 6px; }
+        .spot-tag { color: #27ae60; font-weight: bold; font-size: 0.75rem; background: #eafaf1; padding: 3px 7px; border-radius: 6px; }
+        .tip-box { background: #394356; color: white; padding: 18px; border-radius: 14px; font-size: 0.85rem; margin-top: 20px; line-height: 1.6; }
+        .checklist { list-style: none; padding: 0; }
+        .checklist li { margin-bottom: 12px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; font-size: 0.95rem; display: flex; align-items: center; }
+        .checklist input { margin-right: 12px; transform: scale(1.3); }
+    </style>
+</head>
+<body>
+
+<input type="radio" name="nav" id="tab1" checked>
+<input type="radio" name="nav" id="tab2">
+<input type="radio" name="nav" id="tab3">
+<input type="radio" name="nav" id="tab4">
+<input type="radio" name="nav" id="tab5">
+<input type="radio" name="nav" id="tab6">
+<input type="radio" name="nav" id="tab7">
+<input type="radio" name="nav" id="tab8">
+<input type="radio" name="nav" id="tab9">
+
+<header>
+    <h2>🌸 2026 日本櫻花職棒祭</h2>
+</header>
+
+<div class="tabs-container">
+    <div class="tabs">
+        <label for="tab1" class="tab-btn">D1 出發</label>
+        <label for="tab2" class="tab-btn">D2 橫濱</label>
+        <label for="tab3" class="tab-btn">D3 鎌倉</label>
+        <label for="tab4" class="tab-btn">D4 移動</label>
+        <label for="tab5" class="tab-btn">D5 淺草</label>
+        <label for="tab6" class="tab-btn">D6 富士</label>
+        <label for="tab7" class="tab-btn">D7 下町</label>
+        <label for="tab8" class="tab-btn">D8 回程</label>
+        <label for="tab9" class="tab-btn">清單</label>
+    </div>
+</div>
+
+<div class="container">
+    <div id="content1" class="card">
+        <div class="img-box"><img src="https://duk.tw/Y9bwd5.jpg"></div>
+        <div class="card-content">
+            <div class="hotel-tag">🏨 住宿：橫濱公園大和魯內酒店</div>
+            <table class="detail-table">
+                <tr><td class="time-col">04:30</td><td class="event-col"><b>我的家出發</b><span>自行開車前往小港機場停車場，辦理 IT280 報到。</span></td></tr>
+                <tr><td class="time-col">12:10</td><td class="event-col"><b>抵達成田機場</b><span>辦理入境，購買 JR N'EX 往復票直達橫濱站。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚃 成田機場搭乘 JR N'EX (90min) 直達橫濱站，轉 JR 根岸線 (5min) 至關內站。</div></td></tr>
+                <tr><td class="time-col">15:30</td><td class="event-col"><b>飯店 Check-in</b><span>大和魯內飯店位於球場正對面，先寄存行李領球票。</span></td></tr>
+                <tr><td class="time-col">18:00</td><td class="event-col"><b>職棒開幕戰</b><span>2026 賽季首戰，橫濱主場應援，感受震撼氛圍。</span></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="content2" class="card">
+        <div class="img-box"><img src="https://duk.tw/jRagri.jpg"></div>
+        <div class="card-content">
+            <div class="hotel-tag">🏨 住宿：橫濱公園大和魯內酒店</div>
+            <table class="detail-table">
+                <tr><td class="time-col">08:30</td><td class="event-col"><b>飯店出發</b><span>由飯店門口搭乘市營巴士前往三溪園。</span></td></tr>
+                <tr><td class="time-col">09:15</td><td class="event-col"><b>三溪園深度賞櫻</b><span>造訪外苑與內苑，拍下古建築與櫻花倒影。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚌 搭乘巴士 8/148 路 (25min) 抵達中華街入口。</div></td></tr>
+                <tr><td class="time-col">12:00</td><td class="event-col"><b>中華街美食</b><span>吃 <span class="food-tag">鵬天閣生煎包</span> 與 <span class="food-tag">謝甜記粥品</span>。</span></td></tr>
+                <tr><td class="time-col">14:00</td><td class="event-col"><b>山下公園散步</b><span>經山下公園漫步至大棧橋，遠眺橫濱海景。</span></td></tr>
+                <tr><td class="time-col">16:00</td><td class="event-col"><b>紅磚倉庫</b><span>享用 <span class="food-tag">Bills 鬆餅</span>，逛港邊手作市集。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚃 搭乘纜車 AIR CABIN 前往櫻木町站。</div></td></tr>
+                <tr><td class="time-col">18:30</td><td class="event-col"><b>大岡川夜櫻</b><span>櫻木町河畔漫步，欣賞壯觀紅燈籠櫻花隧道。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🏠 返回：由櫻木町搭 JR 根岸線 (2min) 直回關內飯店。</div></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="content3" class="card">
+        <div class="img-box"><img src="https://duk.tw/h39NoW.jpg"></div>
+        <div class="card-content">
+            <div class="hotel-tag">🏨 住宿：橫濱公園大和魯內酒店</div>
+            <table class="detail-table">
+                <tr><td class="time-col">08:30</td><td class="event-col"><b>飯店出發</b><span>由關內站搭 JR 根岸線，至大船轉橫須賀線。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚃 抵達鎌倉站，開啟古都賞櫻之旅。</div></td></tr>
+                <tr><td class="time-col">09:30</td><td class="event-col"><b>鶴岡八幡宮</b><span>漫步通往神社的「段葛」櫻花隧道。</span></td></tr>
+                <tr><td class="time-col">11:00</td><td class="event-col"><b>小町通商店街</b><span>品嚐 <span class="food-tag">鎌倉炸肉餅</span> 與豆子點心。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚃 鎌倉站搭乘江之電，享受湘南海岸風光。</div></td></tr>
+                <tr><td class="time-col">13:30</td><td class="event-col"><b>長谷 & 七里濱</b><span>參拜 <span class="spot-tag">鎌倉大佛</span>，在七里濱看海遠眺江之島。</span></td></tr>
+                <tr><td class="time-col">15:30</td><td class="event-col"><b>鎌倉高校前</b><span>灌籃高手平交道聖地巡禮。</span></td></tr>
+                <tr><td class="time-col">17:00</td><td class="event-col"><b>江之島夕陽</b><span>吃 <span class="food-tag">吻仔魚丼</span>，在展望台看夕陽。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🏠 返回：由江之島站搭乘單軌或小田急轉 JR 回關內。</div></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="content4" class="card">
+        <div class="img-box"><img src="https://duk.tw/kojY3E.jpg"></div>
+        <div class="card-content">
+            <div class="hotel-tag">🏨 住宿：新橋大和Roynet飯店</div>
+            <table class="detail-table">
+                <tr><td class="time-col">08:30</td><td class="event-col"><b>飯店退房 & 寄放行李</b><span>一早辦理 Check-out，將行李暫存於橫濱飯店櫃檯。</span></td></tr>
+                <tr><td class="time-col">09:30</td><td class="event-col"><b>橫濱纜車體驗</b><span>步行至櫻木町站，搭乘 <span class="spot-tag">AIR CABIN</span> 俯瞰港區。</span></td></tr>
+                <tr><td class="time-col">11:00</td><td class="event-col"><b>取行李 & 移動</b><span>返回飯店領取行李，前往關內站。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚃 關內站搭 JR 京濱東北線直達新橋站 (約 40min)。</div></td></tr>
+                <tr><td class="time-col">13:00</td><td class="event-col"><b>新橋飯店寄放</b><span>抵達新橋後，先至飯店放置行李。</span></td></tr>
+                <tr><td class="time-col">14:00</td><td class="event-col"><b>銀座商圈散策</b><span>步行前往銀座逛街，享用下午茶。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🏠 返回：步行返回新橋飯店辦理入住。</div></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="content5" class="card">
+        <div class="img-box"><img src="https://duk.tw/pdTOqg.jpg"></div>
+        <div class="card-content">
+            <div class="hotel-tag">🏨 住宿：新橋大和Roynet飯店</div>
+            <table class="detail-table">
+                <tr><td class="time-col">08:30</td><td class="event-col"><b>飯店出發</b><span>由新橋站搭乘地鐵銀座線直達上野。</span></td></tr>
+                <tr><td class="time-col">09:15</td><td class="event-col"><b>上野公園賞櫻</b><span>漫步不忍池，參拜東照宮。</span></td></tr>
+                <tr><td class="time-col">11:30</td><td class="event-col"><b>阿美橫丁</b><span>採買藥妝，品嚐在地小吃。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚃 搭乘地鐵銀座線前往淺草站 (5min)。</div></td></tr>
+                <tr><td class="time-col">13:30</td><td class="event-col"><b>淺草深度巡禮</b><span>淺草寺求籤，必吃 <span class="food-tag">龜十銅鑼燒</span>。</span></td></tr>
+                <tr><td class="time-col">17:00</td><td class="event-col"><b>隅田公園步道</b><span>拍攝晴空塔與夜櫻。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🏠 返回：由淺草搭地鐵銀座線直回新橋站。</div></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="content6" class="card">
+        <div class="img-box"><img src="https://duk.tw/7mbO7M.jpg"></div>
+        <div class="card-content">
+            <div class="hotel-tag">🏨 住宿：新橋大和Roynet飯店</div>
+            <table class="detail-table">
+                <tr><td class="time-col">07:30</td><td class="event-col"><b>飯店出發</b><span>搭山手線至新宿/東京站集合。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚌 富士山觀光巴士專車 (約 2h) 前往河口湖。</div></td></tr>
+                <tr><td class="time-col">11:00</td><td class="event-col"><b>新倉山淺間</b><span>登上 398 階，拍五重塔、櫻花與富士山。</span></td></tr>
+                <tr><td class="time-col">14:30</td><td class="event-col"><b>河口湖大石公園</b><span>逆富士絕景，吃 <span class="food-tag">信玄餅冰淇淋</span>。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🏠 返回：巴士返抵市區，搭車回新橋飯店。</div></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="content7" class="card">
+        <div class="img-box"><img src="https://duk.tw/SrHKvx.jpg"></div>
+        <div class="card-content">
+            <div class="hotel-tag">🏨 住宿：新橋大和Roynet飯店</div>
+            <table class="detail-table">
+                <tr><td class="time-col">08:30</td><td class="event-col"><b>飯店出發</b><span>由新橋站搭地鐵淺草線直通京成線。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚃 抵達 <span class="spot-tag">柴又站</span>，昭和懷舊老街巡禮。</div></td></tr>
+                <tr><td class="time-col">09:30</td><td class="event-col"><b>柴又參道</b><span>參拜帝釋天，吃 <span class="food-tag">高木屋草糰子</span> 與山本亭抹茶。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚌 柴又站搭乘京成巴士「小54」路線至龜有。</div></td></tr>
+                <tr><td class="time-col">13:00</td><td class="event-col"><b>龜有：兩津巡禮</b><span>收集兩津銅像、造訪 Ario 派出所場景。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚃 由龜有站搭 JR 轉地鐵前往澀谷站 (50min)。</div></td></tr>
+                <tr><td class="time-col">16:30</td><td class="event-col"><b>Shibuya Sky</b><span>預約夕陽時段，俯瞰澀谷夜景。</span></td></tr>
+                <tr><td class="time-col">19:00</td><td class="event-col"><b>中目黑夜櫻</b><span>漫步目黑川兩岸浪漫櫻花隧道。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🏠 返回：由澀谷或中目黑搭地鐵直回新橋。</div></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="content8" class="card">
+        <div class="img-box"><img src="https://duk.tw/510UBR.jpg"></div>
+        <div class="card-content">
+            <table class="detail-table">
+                <tr><td class="time-col">08:30</td><td class="event-col"><b>飯店退房</b><span>步行至新橋車站，準備返程。</span></td></tr>
+                <tr><td colspan="2"><div class="trans-row">🚃 新橋搭京成 Access 特急 (65min) 直達成田 T2。</div></td></tr>
+                <tr><td class="time-col">11:50</td><td class="event-col"><b>起飛返台</b><span>IT281 飛往小港機場，預計 15:00 抵達。</span></td></tr>
+                <tr><td class="time-col">16:00</td><td class="event-col"><b>返抵家門</b><span>取車後，自行開車回到我的家。</span></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="content9" class="card">
+        <div class="card-content">
+            <h3>🧳 行前準備清單</h3>
+            <ul class="checklist">
+                <li><input type="checkbox"> 虎航 IT280 報到憑證</li>
+                <li><input type="checkbox"> 虎航 IT281 報到憑證</li>
+                <li><input type="checkbox"> 橫濱大和魯內飯店預訂單</li>
+                <li><input type="checkbox"> 新橋大和Roynet飯店預訂單</li>
+                <li><input type="checkbox"> 3/27 職棒開幕戰門票</li>
+                <li><input type="checkbox"> Shibuya Sky 入場預約憑證</li>
+                <li><input type="checkbox"> 富士山一日遊預約憑證</li>
+                <li><input type="checkbox"> 護照正本</li>
+                <li><input type="checkbox"> 台灣駕照正本 (停車場使用)</li>
+                <li><input type="checkbox"> Visit Japan Web 入境 QR Code</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
