@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>2026 日本櫻花職棒祭 - 旅遊手冊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --sakura-pink: #F4D9D0;
+            --bg-base: #FDF8F5;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-base);
+            color: #555;
+            margin: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .header-banner {
+            height: 250px;
+            width: 100%;
+            background: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1920&q=400');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .main-content {
+            margin-top: -50px;
+            border-radius: 40px 40px 0 0;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        .floating-tabs {
+            position: absolute;
+            bottom: 65px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px 18px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .date-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 10px 0;
+            gap: 25px;
+        }
+        .date-scroll-container::-webkit-scrollbar { display: none; }
+        
+        .date-item {
+            flex-shrink: 0;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .date-item.active .location-name { color: var(--sakura-pink); font-weight: 700; }
+        .date-item .location-name { font-size: 1.1rem; display: block; margin-bottom: 2px; }
+        .date-item .date-sub { font-size: 0.75rem; color: #999; text-transform: uppercase; }
+
+        .itinerary-card {
+            background: white;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(244, 217, 208, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .category-tag {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .transit-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.75rem;
+            color: #BDBDBD;
+            margin: 12px 25px;
+            font-weight: 500;
+        }
+
+        .add-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 56px;
+            height: 56px;
+            background-color: var(--sakura-pink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 8px 20px rgba(244, 217, 208, 0.5);
+            z-index: 100;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <header class="header-banner">
+        <nav class="floating-tabs">
+            <button onclick="showSection('itinerary', this)" class="tab-trigger">
+                <i class="fa-solid fa-map-location-dot text-xl text-[#F4D9D0]"></i>
+            </button>
+            <button onclick="showSection('info', this)" class="tab-trigger">
+                <i class="fa-solid fa-circle-info text-xl text-gray-400"></i>
+            </button>
+            <button onclick="showSection('shopping', this)" class="tab-trigger">
+                <i class="fa-solid fa-basket-shopping text-xl text-gray-400"></i>
+            </button>
+            <button onclick="showSection('checklist', this)" class="tab-trigger">
+                <i class="fa-solid fa-sack-dollar text-xl text-gray-400"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="main-content px-6 pt-10">
+
+        <section id="section-itinerary">
+            <div class="date-scroll-container mb-8">
+                <div class="date-item active" onclick="showDay(1, this)">
+                    <span class="location-name">橫濱</span><span class="date-sub">Fri 27</span>
+                </div>
+                <div class="date-item opacity-40" onclick="showDay(2, this)">
+                    <span class="location-name">橫濱</span><span class="date-sub">Sat 28</span>
+                </div>
+                <div class="date-item opacity-40" onclick="showDay(3, this)">
+                    <span class="location-name">鎌倉</span><span class="date-sub">Sun 29</span>
+                </div>
+                <div class="date-item opacity-40" onclick="showDay(4, this)">
+                    <span class="location-name">新橋</span><span class="date-sub">Mon 30</span>
+                </div>
+                <div class="date-item opacity-40" onclick="showDay(5, this)">
+                    <span class="location-name">淺草</span><span class="date-sub">Tue 31</span>
+                </div>
+                <div class="date-item opacity-40" onclick="showDay(6, this)">
+                    <span class="location-name">富士</span><span class="date-sub">Wed 01</span>
+                </div>
+                <div class="date-item opacity-40" onclick="showDay(7, this)">
+                    <span class="location-name">柴又</span><span class="date-sub">Thu 02</span>
+                </div>
+                <div class="date-item opacity-40" onclick="showDay(8, this)">
+                    <span class="location-name">回程</span><span class="date-sub">Fri 03</span>
+                </div>
+            </div>
+
+            <div class="bg-white/40 border border-white p-4 rounded-3xl flex justify-between items-center mb-8">
+                <div class="flex items-center gap-4">
+                    <i class="fa-solid fa-cloud-sun text-3xl text-orange-200"></i>
+                    <div>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-bold">14°C</span>
+                            <span class="text-xs text-gray-400">/ 體感 12°C</span>
+                        </div>
+                        <p class="text-[11px] text-gray-500 font-medium">穿著建議：發熱衣 + 風衣/大衣</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <span id="current-city" class="text-[10px] bg-white/60 px-3 py-1 rounded-full text-gray-400 border border-white/50">橫濱市</span>
+                </div>
+            </div>
+
+            <div id="itinerary-content">
+                <div id="day-1" class="day-content">
+                    <div class="itinerary-card !bg-[#FDF8F5] border-dashed border-[#F4D9D0]">
+                        <span class="category-tag bg-[#F4D9D0] text-white">航班</span>
+                        <div class="flex justify-between items-center mt-3">
+                            <div class="text-center"><p class="text-2xl font-bold">KHH</p><p class="text-[11px] text-gray-400">高雄</p></div>
+                            <div class="flex flex-col items-center flex-1 mx-4"><span class="text-[10px] text-gray-400 font-bold mb-1">IT280</span><div class="w-full h-[1px] bg-gray-200 relative"><i class="fa-solid fa-plane text-xs absolute top-[-6px] left-[50%] translate-x-[-50%] text-[#F4D9D0]"></i></div><span class="text-[10px] text-gray-400 mt-1">08:00 - 12:10</span></div>
+                            <div class="text-center"><p class="text-2xl font-bold">NRT</p><p class="text-[11px] text-gray-400">成田</p></div>
+                        </div>
+                    </div>
+                    <div class="transit-info"><i class="fa-solid fa-train-subway text-[#F4D9D0]"></i><span>JR N'EX 直達橫濱 (約 90 min)</span></div>
+                    <div class="itinerary-card" onclick="window.open('https://www.google.com/maps/search/?api=1&query=橫濱公園大和魯內酒店')">
+                        <span class="category-tag bg-blue-50 text-blue-400">住宿</span>
+                        <h3 class="font-bold text-gray-700 text-lg mt-1">橫濱公園大和魯內酒店</h3>
+                        <div class="mt-4 space-y-2 text-xs text-gray-500"><p><i class="fa-regular fa-clock w-5"></i> Check-in 15:30</p><p><i class="fa-solid fa-note-sticky w-5"></i> 先寄存行李領球票</p></div>
+                    </div>
+                    <div class="transit-info"><i class="fa-solid fa-person-walking text-[#F4D9D0]"></i><span>步行 2 min</span></div>
+                    <div class="itinerary-card">
+                        <span class="category-tag bg-green-50 text-green-400">景點</span>
+                        <h3 class="font-bold text-gray-700 text-lg mt-1">職棒開幕戰</h3>
+                        <div class="mt-4 space-y-2 text-xs text-gray-500"><p><i class="fa-regular fa-clock w-5"></i> 18:00 開始</p><p><i class="fa-solid fa-star w-5"></i> 橫濱主場應援</p></div>
+                    </div>
+                </div>
+
+                <div id="day-2" class="day-content hidden">
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">三溪園深度賞櫻</h3><p class="text-xs text-gray-500 mt-2">拍下古建築與櫻花倒影</p></div>
+                    <div class="transit-info"><i class="fa-solid fa-bus text-[#F4D9D0]"></i><span>搭乘巴士至中華街 (25min)</span></div>
+                    <div class="itinerary-card"><span class="category-tag bg-orange-50 text-orange-400">美食</span><h3 class="font-bold text-gray-700 text-lg mt-1">中華街美食</h3><p class="text-xs text-gray-500 mt-2">鵬天閣生煎包、謝甜記粥品</p></div>
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">大岡川夜櫻</h3><p class="text-xs text-gray-500 mt-2">壯觀紅燈籠櫻花隧道</p></div>
+                </div>
+
+                <div id="day-3" class="day-content hidden">
+                    <div class="transit-info"><i class="fa-solid fa-train text-[#F4D9D0]"></i><span>JR 轉橫須賀線至鎌倉站</span></div>
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">鶴岡八幡宮</h3><p class="text-xs text-gray-500 mt-2">漫步「段葛」櫻花隧道</p></div>
+                    <div class="transit-info"><i class="fa-solid fa-train-tram text-[#F4D9D0]"></i><span>搭乘江之電</span></div>
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">鎌倉高校前</h3><p class="text-xs text-gray-500 mt-2">灌籃高手平交道聖地巡禮</p></div>
+                </div>
+
+                <div id="day-4" class="day-content hidden">
+                    <div class="itinerary-card"><span class="category-tag bg-blue-50 text-blue-400">住宿</span><h3 class="font-bold text-gray-700 text-lg mt-1">新橋大和Roynet飯店</h3><p class="text-xs text-gray-500 mt-2">行李寄放後前往銀座</p></div>
+                    <div class="transit-info"><i class="fa-solid fa-train text-[#F4D9D0]"></i><span>搭乘 JR 京濱東北線至新橋站</span></div>
+                    <div class="itinerary-card"><span class="category-tag bg-purple-50 text-purple-400">購物</span><h3 class="font-bold text-gray-700 text-lg mt-1">銀座商圈散策</h3><p class="text-xs text-gray-500 mt-2">逛街享用下午茶</p></div>
+                </div>
+
+                <div id="day-5" class="day-content hidden">
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">上野公園賞櫻</h3><p class="text-xs text-gray-500 mt-2">漫步不忍池，參拜東照宮</p></div>
+                    <div class="transit-info"><i class="fa-solid fa-train-subway text-[#F4D9D0]"></i><span>地鐵銀座線至淺草</span></div>
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">淺草深度巡禮</h3><p class="text-xs text-gray-500 mt-2">淺草寺求籤、隅田公園看晴空塔</p></div>
+                </div>
+
+                <div id="day-6" class="day-content hidden">
+                    <div class="transit-info"><i class="fa-solid fa-bus text-[#F4D9D0]"></i><span>富士山觀光巴士專車 (2h)</span></div>
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">新倉山淺間</h3><p class="text-xs text-gray-500 mt-2">五重塔、櫻花與富士山絕景</p></div>
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">河口湖大石公園</h3><p class="text-xs text-gray-500 mt-2">逆富士絕景，吃信玄餅冰淇淋</p></div>
+                </div>
+
+                <div id="day-7" class="day-content hidden">
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">柴又昭和老街</h3><p class="text-xs text-gray-500 mt-2">參拜帝釋天、吃草糰子</p></div>
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">龜有兩津巡禮</h3><p class="text-xs text-gray-500 mt-2">收集銅像、造訪派出所場景</p></div>
+                    <div class="itinerary-card"><span class="category-tag bg-green-50 text-green-400">景點</span><h3 class="font-bold text-gray-700 text-lg mt-1">Shibuya Sky</h3><p class="text-xs text-gray-500 mt-2">俯瞰澀谷夜景與中目黑夜櫻</p></div>
+                </div>
+
+                <div id="day-8" class="day-content hidden">
+                    <div class="transit-info"><i class="fa-solid fa-train-subway text-[#F4D9D0]"></i><span>Access 特急直達成田 T2</span></div>
+                    <div class="itinerary-card !bg-[#FDF8F5] border-dashed border-[#F4D9D0]">
+                        <span class="category-tag bg-[#F4D9D0] text-white">航班</span>
+                        <div class="flex justify-between items-center mt-3">
+                            <div class="text-center"><p class="text-2xl font-bold">NRT</p></div>
+                            <div class="flex flex-col items-center flex-1 mx-4"><span class="text-[10px] text-gray-400 font-bold mb-1">IT281</span><div class="w-full h-[1px] bg-gray-200 relative"><i class="fa-solid fa-plane text-xs absolute top-[-6px] left-[50%] translate-x-[-50%] text-[#F4D9D0] rotate-180"></i></div><span class="text-[10px] text-gray-400 mt-1">11:50 - 15:00</span></div>
+                            <div class="text-center"><p class="text-2xl font-bold">KHH</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-info" class="hidden">
+            <h2 class="text-xl font-bold mb-6 flex items-center gap-2"><i class="fa-solid fa-circle-info text-[#F4D9D0]"></i> 旅行資訊</h2>
+            <div class="itinerary-card">
+                <p class="text-sm font-bold text-gray-600 mb-4">💴 匯率換算 (JPY ➔ TWD)</p>
+                <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-2xl mb-4"><input type="number" id="jpy-input" oninput="convertCurrency()" placeholder="輸入日幣金額" class="bg-transparent w-full outline-none text-lg font-bold"><span class="text-gray-400 font-bold">JPY</span></div>
+                <div class="flex items-center gap-4 bg-[#FDF8F5] p-4 rounded-2xl border border-[#F4D9D0]/30"><input type="text" id="twd-output" readonly placeholder="換算台幣" class="bg-transparent w-full outline-none text-lg font-bold text-[#F4D9D0]"><span class="text-[#F4D9D0] font-bold">TWD</span></div>
+            </div>
+        </section>
+
+        <section id="section-shopping" class="hidden"><h2 class="text-xl font-bold mb-6">購物清單</h2></section>
+        <section id="section-checklist" class="hidden"><h2 class="text-xl font-bold mb-6">物品檢查</h2></section>
+
+    </main>
+
+    <button class="add-btn" onclick="alert('開啟新增視窗')"><i class="fa-solid fa-plus"></i></button>
+
+    <script>
+        // 日切換邏輯
+        function showDay(dayNum, btn) {
+            // 隱藏所有天行程
+            const days = document.querySelectorAll('.day-content');
+            days.forEach(d => d.classList.add('hidden'));
+            
+            // 顯示指定天
+            document.getElementById('day-' + dayNum).classList.remove('hidden');
+            
+            // 更新按鈕樣式
+            const allItems = document.querySelectorAll('.date-item');
+            allItems.forEach(item => {
+                item.classList.remove('active');
+                item.classList.add('opacity-40');
+            });
+            btn.classList.add('active');
+            btn.classList.remove('opacity-40');
+
+            // 更新城市標籤
+            const cities = ["橫濱市", "橫濱市", "鎌倉市", "新橋/銀座", "淺草/上野", "河口湖", "柴又/澀谷", "返台"];
+            document.getElementById('current-city').innerText = cities[dayNum-1];
+        }
+
+        // 頁面切換邏輯
+        function showSection(sectionId, btn) {
+            const sections = ['itinerary', 'info', 'shopping', 'checklist'];
+            sections.forEach(s => document.getElementById('section-' + s).classList.add('hidden'));
+            document.getElementById('section-' + sectionId).classList.remove('hidden');
+
+            const allIcons = document.querySelectorAll('.tab-trigger i');
+            allIcons.forEach(icon => {
+                icon.classList.remove('text-[#F4D9D0]');
+                icon.classList.add('text-gray-400');
+            });
+            btn.querySelector('i').classList.remove('text-gray-400');
+            btn.querySelector('i').classList.add('text-[#F4D9D0]');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function convertCurrency() {
+            const jpy = document.getElementById('jpy-input').value;
+            if(jpy) {
+                document.getElementById('twd-output').value = (jpy * 0.21).toFixed(0).toLocaleString();
+            } else {
+                document.getElementById('twd-output').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
