@@ -139,6 +139,19 @@
     font-weight: bold;
     color: #2d3436;
     font-size: 1.05em;
+    display: block;
+  }
+
+  /* 💡 小提醒樣式 */
+  .suggestion {
+    font-size: 0.88em;
+    color: #7f8c8d;
+    margin-top: 6px;
+    background-color: #fdfdfd;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border-left: 3px solid #ffeaa7;
+    line-height: 1.5;
   }
 
   /* RWD 手機版微調 */
@@ -152,7 +165,7 @@
 <body>
 
   <h1>🌸 東京不熱｜2026 日本櫻花季</h1>
-  <div class="subtitle">文文, JJ ｜ 2026-03-27 ~ 2026-04-03</div>
+  <div class="subtitle">陳姵文, 許智傑 ｜ 2026-03-27 ~ 2026-04-03</div>
 
   <div class="tabs">
     <button class="tab-btn active" onclick="openTab('day1')">D1 出發</button>
@@ -171,10 +184,22 @@
       <tr><td class="time-col">02:53</td><td><span class="location-text">家</span></td></tr>
       <tr><td class="time-col">03:55</td><td><span class="location-text">高雄國際機場</span></td></tr>
       <tr><td class="time-col">11:10</td><td><span class="location-text">成田國際機場</span></td></tr>
-      <tr><td class="time-col">14:11</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
+      <tr>
+        <td class="time-col">14:11</td>
+        <td>
+          <span class="location-text">橫濱公園大和魯內飯店</span>
+          <div class="suggestion">💡 飯店位置極佳，就在球場對面，可以先安頓好行李再輕鬆出門走走。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">14:49</td><td><span class="location-text">開港廣場公園</span></td></tr>
       <tr><td class="time-col">15:54</td><td><span class="location-text">橫濱中華街</span></td></tr>
-      <tr><td class="time-col">17:02</td><td><span class="location-text">橫濱棒球場</span></td></tr>
+      <tr>
+        <td class="time-col">17:02</td>
+        <td>
+          <span class="location-text">橫濱棒球場</span>
+          <div class="suggestion">💡 春季晚間海風偏涼，記得帶件防風外套。熱血的日職應援氣氛絕對會讓看球體驗非常難忘！</div>
+        </td>
+      </tr>
       <tr><td class="time-col">20:07</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
     </table>
   </div>
@@ -184,11 +209,23 @@
     <table>
       <tr><td class="time-col">08:00</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
       <tr><td class="time-col">08:52</td><td><span class="location-text">明月院</span></td></tr>
-      <tr><td class="time-col">10:03</td><td><span class="location-text">鶴岡八幡宮</span></td></tr>
+      <tr>
+        <td class="time-col">10:03</td>
+        <td>
+          <span class="location-text">鶴岡八幡宮</span>
+          <div class="suggestion">💡 通往神社的「段葛」步道若遇櫻花滿開，是非常夢幻好拍的櫻花隧道。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">11:13</td><td><span class="location-text">Rojiura Curry SAMURAI, Kamakura</span></td></tr>
       <tr><td class="time-col">12:17</td><td><span class="location-text">鎌倉小町通</span></td></tr>
       <tr><td class="time-col">13:32</td><td><span class="location-text">鎌倉大佛 高徳院</span></td></tr>
-      <tr><td class="time-col">15:53</td><td><span class="location-text">鎌倉高校前站</span></td></tr>
+      <tr>
+        <td class="time-col">15:53</td>
+        <td>
+          <span class="location-text">鎌倉高校前站</span>
+          <div class="suggestion">💡 使用 20-200mm 鏡頭的長焦端，剛好可以完美捕捉江之電與海景交疊的經典壓縮感，記得先看好電車經過的時刻表。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">16:58</td><td><span class="location-text">江之島站</span></td></tr>
       <tr><td class="time-col">17:34</td><td><span class="location-text">江之島海蠟燭展望燈塔</span></td></tr>
       <tr><td class="time-col">19:57</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
@@ -199,7 +236,13 @@
     <div class="hotel-info">🏨 住宿：橫濱公園大和魯內飯店</div>
     <table>
       <tr><td class="time-col">08:00</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
-      <tr><td class="time-col">08:37</td><td><span class="location-text">三渓園</span></td></tr>
+      <tr>
+        <td class="time-col">08:37</td>
+        <td>
+          <span class="location-text">三渓園</span>
+          <div class="suggestion">💡 占地廣大，早上的絕佳光線非常適合拍攝日式庭園與古建築的倒影。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">10:08</td><td><span class="location-text">橫濱元町商店街</span></td></tr>
       <tr><td class="time-col">11:31</td><td><span class="location-text">大棧橋碼頭</span></td></tr>
       <tr><td class="time-col">12:49</td><td><span class="location-text">橫濱紅磚倉庫2號館</span></td></tr>
@@ -207,7 +250,13 @@
       <tr><td class="time-col">15:03</td><td><span class="location-text">運河公園站 (橫濱空中纜車)</span></td></tr>
       <tr><td class="time-col">16:16</td><td><span class="location-text">櫻木町站</span></td></tr>
       <tr><td class="time-col">16:25</td><td><span class="location-text">YOKOHAMA AIR CABIN Sakuragicho Station</span></td></tr>
-      <tr><td class="time-col">17:32</td><td><span class="location-text">橫濱地標大廈</span></td></tr>
+      <tr>
+        <td class="time-col">17:32</td>
+        <td>
+          <span class="location-text">橫濱地標大廈</span>
+          <div class="suggestion">💡 橫濱港區的夜景十分迷人，A7C2 的強大防手震剛好派上用場，手持也能輕鬆拍出清晰的百萬夜景。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">18:49</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
     </table>
   </div>
@@ -223,7 +272,13 @@
       <tr><td class="time-col">10:42</td><td><span class="location-text">市場前站</span></td></tr>
       <tr><td class="time-col">10:51</td><td><span class="location-text">豐洲市場</span></td></tr>
       <tr><td class="time-col">11:08</td><td><span class="location-text">豐洲 千客萬來</span></td></tr>
-      <tr><td class="time-col">11:43</td><td><span class="location-text">大和壽司</span></td></tr>
+      <tr>
+        <td class="time-col">11:43</td>
+        <td>
+          <span class="location-text">大和壽司</span>
+          <div class="suggestion">💡 超人氣名店排隊人潮極多，建議提早抵達，或隨時準備前往旁邊的「千客萬來」覓食作為備案。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">12:17</td><td><span class="location-text">市場前站</span></td></tr>
       <tr><td class="time-col">12:42</td><td><span class="location-text">銀座一丁目站</span></td></tr>
       <tr><td class="time-col">12:54</td><td><span class="location-text">Ginza Loft</span></td></tr>
@@ -235,7 +290,13 @@
       <tr><td class="time-col">17:37</td><td><span class="location-text">Uniqlo Tokyo</span></td></tr>
       <tr><td class="time-col">18:46</td><td><span class="location-text">GINZA syabuki</span></td></tr>
       <tr><td class="time-col">19:51</td><td><span class="location-text">歌舞伎座</span></td></tr>
-      <tr><td class="time-col">20:10</td><td><span class="location-text">BicCamera 有樂町店</span></td></tr>
+      <tr>
+        <td class="time-col">20:10</td>
+        <td>
+          <span class="location-text">BicCamera 有樂町店</span>
+          <div class="suggestion">💡 如果有想添購攝影配件或尋找特定的相機周邊，這裡的款式非常齊全可以慢慢逛。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">21:51</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
     </table>
   </div>
@@ -245,10 +306,22 @@
     <table>
       <tr><td class="time-col">08:00</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
       <tr><td class="time-col">08:10</td><td><span class="location-text">GinzaNovo</span></td></tr>
-      <tr><td class="time-col">10:45</td><td><span class="location-text">新倉山淺間公園</span></td></tr>
+      <tr>
+        <td class="time-col">10:45</td>
+        <td>
+          <span class="location-text">新倉山淺間公園</span>
+          <div class="suggestion">💡 前往觀景台需爬 398 階階梯，建議穿著舒適好走的鞋子。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">11:51</td><td><span class="location-text">日川時計店</span></td></tr>
       <tr><td class="time-col">13:06</td><td><span class="location-text">忍野八海</span></td></tr>
-      <tr><td class="time-col">14:22</td><td><span class="location-text">本町二丁目商店街拍照點</span></td></tr>
+      <tr>
+        <td class="time-col">14:22</td>
+        <td>
+          <span class="location-text">本町二丁目商店街拍照點</span>
+          <div class="suggestion">💡 這裡絕對是發揮 20-200mm 旅遊鏡的最佳舞台！長焦段能輕易拍出富士山巨大山體與街道交疊的壯麗壓縮感。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">15:39</td><td><span class="location-text">大石公園</span></td></tr>
       <tr><td class="time-col">18:23</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
     </table>
@@ -259,13 +332,25 @@
     <table>
       <tr><td class="time-col">08:00</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
       <tr><td class="time-col">08:24</td><td><span class="location-text">HUMAN MADE 咖啡 by 藍瓶咖啡</span></td></tr>
-      <tr><td class="time-col">09:47</td><td><span class="location-text">北村相機店</span></td></tr>
+      <tr>
+        <td class="time-col">09:47</td>
+        <td>
+          <span class="location-text">北村相機店</span>
+          <div class="suggestion">💡 二手相機與鏡頭庫存非常豐富，很適合來這裡挖寶找找稀有配件。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">10:54</td><td><span class="location-text">鳳仙花</span></td></tr>
       <tr><td class="time-col">12:20</td><td><span class="location-text">明治神宮</span></td></tr>
       <tr><td class="time-col">13:43</td><td><span class="location-text">代代木公園</span></td></tr>
       <tr><td class="time-col">15:05</td><td><span class="location-text">POLÈNE 東京店</span></td></tr>
       <tr><td class="time-col">16:13</td><td><span class="location-text">澀谷Scramble 交叉點</span></td></tr>
-      <tr><td class="time-col">17:16</td><td><span class="location-text">澀谷 SKY</span></td></tr>
+      <tr>
+        <td class="time-col">17:16</td>
+        <td>
+          <span class="location-text">澀谷 SKY</span>
+          <div class="suggestion">💡 頂樓戶外區規定必須使用「相機頸背帶」才能攜帶相機入場，且嚴禁攜帶腳架與背包，上去前記得精簡裝備。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">19:43</td><td><span class="location-text">鰻の成瀬カレッタ汐留店</span></td></tr>
       <tr><td class="time-col">20:55</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
     </table>
@@ -278,7 +363,13 @@
       <tr><td class="time-col">07:15</td><td><span class="location-text">大手仮休憩所(売店)</span></td></tr>
       <tr><td class="time-col">08:46</td><td><span class="location-text">淺草寺 雷門</span></td></tr>
       <tr><td class="time-col">10:19</td><td><span class="location-text">吉備子屋-桃鈴</span></td></tr>
-      <tr><td class="time-col">11:54</td><td><span class="location-text">上野阿美橫町</span></td></tr>
+      <tr>
+        <td class="time-col">11:54</td>
+        <td>
+          <span class="location-text">上野阿美橫町</span>
+          <div class="suggestion">💡 採買藥妝的好地方。如果有空檔也很推薦順遊附近的「合羽橋道具街」，挑選幾件精緻的日式器皿，回台灣後做乾咖哩或松阪豬義大利麵時，擺盤起來會更有氣氛！</div>
+        </td>
+      </tr>
       <tr><td class="time-col">12:58</td><td><span class="location-text">一頭牛燒肉 房家</span></td></tr>
       <tr><td class="time-col">14:33</td><td><span class="location-text">玩具店 Yamashiroya</span></td></tr>
       <tr><td class="time-col">15:35</td><td><span class="location-text">OS Drug 上野店藥妝店</span></td></tr>
@@ -292,7 +383,13 @@
     <div class="hotel-info">✈️ 賦歸</div>
     <table>
       <tr><td class="time-col">06:25</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
-      <tr><td class="time-col">08:31</td><td><span class="location-text">成田國際機場</span></td></tr>
+      <tr>
+        <td class="time-col">08:31</td>
+        <td>
+          <span class="location-text">成田國際機場</span>
+          <div class="suggestion">💡 準備搭機前記得先確認行李重量，若有未滿的額度可以把握時間在免稅店做最後衝刺。</div>
+        </td>
+      </tr>
       <tr><td class="time-col">15:11</td><td><span class="location-text">高雄國際機場</span></td></tr>
       <tr><td class="time-col">17:10</td><td><span class="location-text">家</span></td></tr>
     </table>
@@ -300,19 +397,14 @@
 
   <script>
     function openTab(tabId) {
-      // 隱藏所有內容
       var contents = document.getElementsByClassName("tab-content");
       for (var i = 0; i < contents.length; i++) {
         contents[i].classList.remove("active");
       }
-      
-      // 移除所有按鈕的 active 狀態
       var btns = document.getElementsByClassName("tab-btn");
       for (var i = 0; i < btns.length; i++) {
         btns[i].classList.remove("active");
       }
-      
-      // 顯示點擊的內容與設定按鈕狀態
       document.getElementById(tabId).classList.add("active");
       event.currentTarget.classList.add("active");
     }
