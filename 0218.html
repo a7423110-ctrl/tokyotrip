@@ -3,237 +3,320 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>東京不熱 行程表</title>
+<title>🌸 東京不熱｜2026 日本春季賞櫻行程</title>
 <style>
+  :root {
+    --primary-color: #ff8fa3;
+    --primary-hover: #ff748c;
+    --text-main: #333333;
+    --text-light: #666666;
+    --bg-main: #fcfcfc;
+    --bg-card: #ffffff;
+    --border-color: #eeeeee;
+  }
+
   body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, 'PingFang TC', '微軟正黑體', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f4f7f6;
-    max-width: 900px;
+    color: var(--text-main);
+    background-color: var(--bg-main);
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
   }
+
   h1 {
     text-align: center;
-    color: #2c3e50;
+    color: #4a4a4a;
+    font-size: 1.8em;
     margin-bottom: 5px;
   }
-  .meta-info {
+
+  .subtitle {
     text-align: center;
-    color: #7f8c8d;
-    margin-bottom: 30px;
-    font-size: 1.1em;
-  }
-  .day-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    color: var(--text-light);
+    font-size: 0.95em;
     margin-bottom: 25px;
-    overflow: hidden;
   }
-  .day-header {
-    background-color: #e88a9e; /* 櫻花粉色調 */
+
+  /* 頁籤導覽列樣式 */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+
+  .tab-btn {
+    background-color: var(--bg-card);
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.95em;
+  }
+
+  .tab-btn:hover {
+    background-color: #fff0f3;
+    border-color: var(--primary-color);
+    color: var(--primary-hover);
+  }
+
+  .tab-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
     color: white;
-    padding: 15px 20px;
-    margin: 0;
-    font-size: 1.25em;
+  }
+
+  /* 內容區塊樣式 */
+  .tab-content {
+    display: none;
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    animation: fadeIn 0.4s;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 住宿提示標籤 */
+  .hotel-info {
+    font-size: 1.05em;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    border-left: 5px solid #ffb3c1;
+    border-radius: 6px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
   }
-  .schedule-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+
+  /* 行程表格樣式 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
   }
-  .schedule-item {
-    display: flex;
-    padding: 12px 20px;
-    border-bottom: 1px solid #f0f0f0;
+
+  th, td {
+    padding: 14px 10px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
   }
-  .schedule-item:last-child {
+
+  tr:last-child td {
     border-bottom: none;
   }
-  .time {
+
+  tr:hover {
+    background-color: #fafafa;
+  }
+
+  .time-col {
+    width: 65px;
     font-weight: bold;
-    color: #e88a9e;
-    width: 80px;
-    flex-shrink: 0;
+    color: #d63031;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
   }
-  .location {
-    flex-grow: 1;
-    color: #34495e;
+
+  .location-text {
+    font-weight: bold;
+    color: #2d3436;
+    font-size: 1.05em;
   }
-  .cite {
-    font-size: 0.8em;
-    color: #bdc3c7;
-    margin-left: 5px;
+
+  /* RWD 手機版微調 */
+  @media (max-width: 600px) {
+    .tab-btn { padding: 8px 12px; font-size: 0.9em; }
+    .tab-content { padding: 15px; }
+    .time-col { width: 55px; font-size: 1em; }
   }
 </style>
 </head>
 <body>
 
-  [cite_start]<h1>東京不熱 [cite: 2]</h1>
-  <div class="meta-info">
-    [cite_start]同行者：陳姵文, 許智傑 [cite: 3] | [cite_start]日期：2026-03-27 ~ 2026-04-03 [cite: 2]
+  <h1>🌸 東京不熱｜2026 日本櫻花季</h1>
+  <div class="subtitle">陳姵文, 許智傑 ｜ 2026-03-27 ~ 2026-04-03</div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab('day1')">D1 出發</button>
+    <button class="tab-btn" onclick="openTab('day2')">D2 鎌倉</button>
+    <button class="tab-btn" onclick="openTab('day3')">D3 橫濱</button>
+    <button class="tab-btn" onclick="openTab('day4')">D4 移動</button>
+    <button class="tab-btn" onclick="openTab('day5')">D5 富士</button>
+    <button class="tab-btn" onclick="openTab('day6')">D6 澀谷</button>
+    <button class="tab-btn" onclick="openTab('day7')">D7 下町</button>
+    <button class="tab-btn" onclick="openTab('day8')">D8 回程</button>
   </div>
 
-  <div class="day-card">
-    <h2 class="day-header">
-      [cite_start]<span>第 1 天 [cite: 6]</span>
-      [cite_start]<span>2026/03/27 [cite: 7]</span>
-    </h2>
-    <ul class="schedule-list">
-      [cite_start]<li class="schedule-item"><span class="time">02:53</span><span class="location">家 [cite: 8, 184]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">03:55</span><span class="location">高雄國際機場 [cite: 10, 185]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">11:10</span><span class="location">成田國際機場 [cite: 11, 186]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">14:11</span><span class="location">橫濱公園大和魯內飯店 [cite: 12, 188]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">14:49</span><span class="location">開港廣場公園 [cite: 13, 189]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">15:54</span><span class="location">橫濱中華街 [cite: 14, 190]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">17:02</span><span class="location">橫濱棒球場 [cite: 15, 191]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">20:07</span><span class="location">橫濱公園大和魯內飯店 [cite: 16, 192]</span></li>
-    </ul>
+  <div id="day1" class="tab-content active">
+    <div class="hotel-info">🏨 住宿：橫濱公園大和魯內飯店</div>
+    <table>
+      <tr><td class="time-col">02:53</td><td><span class="location-text">家</span></td></tr>
+      <tr><td class="time-col">03:55</td><td><span class="location-text">高雄國際機場</span></td></tr>
+      <tr><td class="time-col">11:10</td><td><span class="location-text">成田國際機場</span></td></tr>
+      <tr><td class="time-col">14:11</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
+      <tr><td class="time-col">14:49</td><td><span class="location-text">開港廣場公園</span></td></tr>
+      <tr><td class="time-col">15:54</td><td><span class="location-text">橫濱中華街</span></td></tr>
+      <tr><td class="time-col">17:02</td><td><span class="location-text">橫濱棒球場</span></td></tr>
+      <tr><td class="time-col">20:07</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
+    </table>
   </div>
 
-  <div class="day-card">
-    <h2 class="day-header">
-      [cite_start]<span>第 2 天 [cite: 17]</span>
-      [cite_start]<span>2026/03/28 [cite: 18]</span>
-    </h2>
-    <ul class="schedule-list">
-      [cite_start]<li class="schedule-item"><span class="time">08:00</span><span class="location">橫濱公園大和魯內飯店 [cite: 19, 194]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">08:52</span><span class="location">明月院 [cite: 20, 195]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">10:03</span><span class="location">鶴岡八幡宮 [cite: 21, 196]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">11:13</span><span class="location">Rojiura Curry SAMURAI, Kamakura [cite: 22, 23, 197, 198]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">12:17</span><span class="location">鎌倉小町通 [cite: 24, 199]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">13:32</span><span class="location">鎌倉大佛 高徳院 [cite: 55, 200]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">15:53</span><span class="location">鎌倉高校前站 [cite: 56, 201]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">16:58</span><span class="location">江之島站 [cite: 57, 202]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">17:34</span><span class="location">江之島海蠟燭展望燈塔 [cite: 58, 203]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">19:57</span><span class="location">橫濱公園大和魯內飯店 [cite: 67, 204]</span></li>
-    </ul>
+  <div id="day2" class="tab-content">
+    <div class="hotel-info">🏨 住宿：橫濱公園大和魯內飯店</div>
+    <table>
+      <tr><td class="time-col">08:00</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
+      <tr><td class="time-col">08:52</td><td><span class="location-text">明月院</span></td></tr>
+      <tr><td class="time-col">10:03</td><td><span class="location-text">鶴岡八幡宮</span></td></tr>
+      <tr><td class="time-col">11:13</td><td><span class="location-text">Rojiura Curry SAMURAI, Kamakura</span></td></tr>
+      <tr><td class="time-col">12:17</td><td><span class="location-text">鎌倉小町通</span></td></tr>
+      <tr><td class="time-col">13:32</td><td><span class="location-text">鎌倉大佛 高徳院</span></td></tr>
+      <tr><td class="time-col">15:53</td><td><span class="location-text">鎌倉高校前站</span></td></tr>
+      <tr><td class="time-col">16:58</td><td><span class="location-text">江之島站</span></td></tr>
+      <tr><td class="time-col">17:34</td><td><span class="location-text">江之島海蠟燭展望燈塔</span></td></tr>
+      <tr><td class="time-col">19:57</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
+    </table>
   </div>
 
-  <div class="day-card">
-    <h2 class="day-header">
-      [cite_start]<span>第 3 天 [cite: 68]</span>
-      [cite_start]<span>2026/03/29 [cite: 69]</span>
-    </h2>
-    <ul class="schedule-list">
-      [cite_start]<li class="schedule-item"><span class="time">08:00</span><span class="location">橫濱公園大和魯內飯店 [cite: 70, 205]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">08:37</span><span class="location">三渓園 [cite: 71, 187]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">10:08</span><span class="location">橫濱元町商店街 [cite: 26, 187]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">11:31</span><span class="location">大棧橋碼頭 [cite: 29, 187]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">12:49</span><span class="location">橫濱紅磚倉庫2號館 [cite: 30, 187]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">13:58</span><span class="location">合味道紀念館 橫濱 [cite: 31, 187]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">15:03</span><span class="location">運河公園站(橫濱空中纜車) [cite: 32, 187]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">16:16</span><span class="location">櫻木町站 [cite: 33, 206]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">16:25</span><span class="location">YOKOHAMA AIR CABIN Sakuragicho Station [cite: 34, 207, 208, 209]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">17:32</span><span class="location">橫濱地標大廈 [cite: 35, 210]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">18:49</span><span class="location">橫濱公園大和魯內飯店 [cite: 36, 211]</span></li>
-    </ul>
+  <div id="day3" class="tab-content">
+    <div class="hotel-info">🏨 住宿：橫濱公園大和魯內飯店</div>
+    <table>
+      <tr><td class="time-col">08:00</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
+      <tr><td class="time-col">08:37</td><td><span class="location-text">三渓園</span></td></tr>
+      <tr><td class="time-col">10:08</td><td><span class="location-text">橫濱元町商店街</span></td></tr>
+      <tr><td class="time-col">11:31</td><td><span class="location-text">大棧橋碼頭</span></td></tr>
+      <tr><td class="time-col">12:49</td><td><span class="location-text">橫濱紅磚倉庫2號館</span></td></tr>
+      <tr><td class="time-col">13:58</td><td><span class="location-text">合味道紀念館 橫濱</span></td></tr>
+      <tr><td class="time-col">15:03</td><td><span class="location-text">運河公園站 (橫濱空中纜車)</span></td></tr>
+      <tr><td class="time-col">16:16</td><td><span class="location-text">櫻木町站</span></td></tr>
+      <tr><td class="time-col">16:25</td><td><span class="location-text">YOKOHAMA AIR CABIN Sakuragicho Station</span></td></tr>
+      <tr><td class="time-col">17:32</td><td><span class="location-text">橫濱地標大廈</span></td></tr>
+      <tr><td class="time-col">18:49</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
+    </table>
   </div>
 
-  <div class="day-card">
-    <h2 class="day-header">
-      [cite_start]<span>第 4 天 [cite: 37]</span>
-      [cite_start]<span>2026/03/30 [cite: 38]</span>
-    </h2>
-    <ul class="schedule-list">
-      [cite_start]<li class="schedule-item"><span class="time">08:00</span><span class="location">橫濱公園大和魯內飯店 [cite: 39, 213]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">08:58</span><span class="location">新橋駅 [cite: 40, 214]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">09:21</span><span class="location">臺場車站 [cite: 41, 215]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">09:41</span><span class="location">自由の女神像 [cite: 49, 216]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">10:06</span><span class="location">Diver City東京廣場 [cite: 52, 217]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">10:42</span><span class="location">市場前站 [cite: 42, 218]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">10:51</span><span class="location">豐洲市場 [cite: 60, 219]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">11:08</span><span class="location">豐洲 千客萬來 [cite: 62, 220]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">11:43</span><span class="location">大和壽司 [cite: 64, 222]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">12:17</span><span class="location">市場前站 [cite: 66, 223]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">12:42</span><span class="location">銀座一丁目站 [cite: 73, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">12:54</span><span class="location">Ginza Loft [cite: 74, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">13:27</span><span class="location">銀座 伊東屋 本店 [cite: 75, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">14:32</span><span class="location">精工屋 銀座時鐘塔 [cite: 76, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">14:51</span><span class="location">LE LABO Ginza Six Store [cite: 77, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">15:24</span><span class="location">PRESS BUTTER SAND 銀座三越 [cite: 81, 84, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">16:31</span><span class="location">GinzaNovo [cite: 87, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">17:37</span><span class="location">Uniqlo Tokyo [cite: 93, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">18:46</span><span class="location">GINZA syabuki [cite: 95, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">19:51</span><span class="location">歌舞伎座 [cite: 97, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">20:10</span><span class="location">BicCamera 有樂町店 [cite: 101, 225]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">21:51</span><span class="location">新橋大和Roynet飯店 [cite: 104, 225]</span></li>
-    </ul>
+  <div id="day4" class="tab-content">
+    <div class="hotel-info">🏨 住宿：橫濱退房 ➔ 入住新橋大和Roynet飯店</div>
+    <table>
+      <tr><td class="time-col">08:00</td><td><span class="location-text">橫濱公園大和魯內飯店</span></td></tr>
+      <tr><td class="time-col">08:58</td><td><span class="location-text">新橋駅</span></td></tr>
+      <tr><td class="time-col">09:21</td><td><span class="location-text">臺場車站</span></td></tr>
+      <tr><td class="time-col">09:41</td><td><span class="location-text">自由の女神像</span></td></tr>
+      <tr><td class="time-col">10:06</td><td><span class="location-text">Diver City東京廣場</span></td></tr>
+      <tr><td class="time-col">10:42</td><td><span class="location-text">市場前站</span></td></tr>
+      <tr><td class="time-col">10:51</td><td><span class="location-text">豐洲市場</span></td></tr>
+      <tr><td class="time-col">11:08</td><td><span class="location-text">豐洲 千客萬來</span></td></tr>
+      <tr><td class="time-col">11:43</td><td><span class="location-text">大和壽司</span></td></tr>
+      <tr><td class="time-col">12:17</td><td><span class="location-text">市場前站</span></td></tr>
+      <tr><td class="time-col">12:42</td><td><span class="location-text">銀座一丁目站</span></td></tr>
+      <tr><td class="time-col">12:54</td><td><span class="location-text">Ginza Loft</span></td></tr>
+      <tr><td class="time-col">13:27</td><td><span class="location-text">銀座 伊東屋 本店</span></td></tr>
+      <tr><td class="time-col">14:32</td><td><span class="location-text">精工屋 銀座時鐘塔</span></td></tr>
+      <tr><td class="time-col">14:51</td><td><span class="location-text">LE LABO Ginza Six Store</span></td></tr>
+      <tr><td class="time-col">15:24</td><td><span class="location-text">PRESS BUTTER SAND 銀座三越</span></td></tr>
+      <tr><td class="time-col">16:31</td><td><span class="location-text">GinzaNovo</span></td></tr>
+      <tr><td class="time-col">17:37</td><td><span class="location-text">Uniqlo Tokyo</span></td></tr>
+      <tr><td class="time-col">18:46</td><td><span class="location-text">GINZA syabuki</span></td></tr>
+      <tr><td class="time-col">19:51</td><td><span class="location-text">歌舞伎座</span></td></tr>
+      <tr><td class="time-col">20:10</td><td><span class="location-text">BicCamera 有樂町店</span></td></tr>
+      <tr><td class="time-col">21:51</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
+    </table>
   </div>
 
-  <div class="day-card">
-    <h2 class="day-header">
-      [cite_start]<span>第 5 天 [cite: 113, 241]</span>
-      [cite_start]<span>2026/03/31 [cite: 117]</span>
-    </h2>
-    <ul class="schedule-list">
-      [cite_start]<li class="schedule-item"><span class="time">08:00</span><span class="location">新橋大和Roynet飯店 [cite: 121, 240]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">08:10</span><span class="location">GinzaNovo [cite: 125, 240]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">10:45</span><span class="location">新倉山淺間公園 [cite: 129, 240]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">11:51</span><span class="location">日川時計店 [cite: 134, 240]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">13:06</span><span class="location">忍野八海 [cite: 135, 240]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">14:22</span><span class="location">本町二丁目商店街拍照點 [cite: 136, 240]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">15:39</span><span class="location">大石公園 [cite: 139, 240]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">18:23</span><span class="location">新橋大和Roynet飯店 [cite: 140, 240]</span></li>
-    </ul>
+  <div id="day5" class="tab-content">
+    <div class="hotel-info">🏨 住宿：新橋大和Roynet飯店</div>
+    <table>
+      <tr><td class="time-col">08:00</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
+      <tr><td class="time-col">08:10</td><td><span class="location-text">GinzaNovo</span></td></tr>
+      <tr><td class="time-col">10:45</td><td><span class="location-text">新倉山淺間公園</span></td></tr>
+      <tr><td class="time-col">11:51</td><td><span class="location-text">日川時計店</span></td></tr>
+      <tr><td class="time-col">13:06</td><td><span class="location-text">忍野八海</span></td></tr>
+      <tr><td class="time-col">14:22</td><td><span class="location-text">本町二丁目商店街拍照點</span></td></tr>
+      <tr><td class="time-col">15:39</td><td><span class="location-text">大石公園</span></td></tr>
+      <tr><td class="time-col">18:23</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
+    </table>
   </div>
 
-  <div class="day-card">
-    <h2 class="day-header">
-      [cite_start]<span>第 6 天 [cite: 141, 242]</span>
-      [cite_start]<span>2026/04/01 [cite: 165]</span>
-    </h2>
-    <ul class="schedule-list">
-      [cite_start]<li class="schedule-item"><span class="time">08:00</span><span class="location">新橋大和Roynet飯店 [cite: 166, 226]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">08:24</span><span class="location">HUMAN MADE 咖啡 by 藍瓶咖啡 [cite: 168, 169, 227, 228, 229]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">09:47</span><span class="location">北村相機店 [cite: 173, 230]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">10:54</span><span class="location">鳳仙花 [cite: 175, 231]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">12:20</span><span class="location">明治神宮 [cite: 176, 232]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">13:43</span><span class="location">代代木公園 [cite: 179, 233]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">15:05</span><span class="location">POLÈNE 東京店 [cite: 180, 234]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">16:13</span><span class="location">澀谷Scramble 交叉點 [cite: 83, 235]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">17:16</span><span class="location">澀谷 SKY [cite: 86, 236, 237]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">19:43</span><span class="location">鰻の成瀬カレッタ汐留店 [cite: 91, 238, 243]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">20:55</span><span class="location">新橋大和Roynet飯店 [cite: 94, 244]</span></li>
-    </ul>
+  <div id="day6" class="tab-content">
+    <div class="hotel-info">🏨 住宿：新橋大和Roynet飯店</div>
+    <table>
+      <tr><td class="time-col">08:00</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
+      <tr><td class="time-col">08:24</td><td><span class="location-text">HUMAN MADE 咖啡 by 藍瓶咖啡</span></td></tr>
+      <tr><td class="time-col">09:47</td><td><span class="location-text">北村相機店</span></td></tr>
+      <tr><td class="time-col">10:54</td><td><span class="location-text">鳳仙花</span></td></tr>
+      <tr><td class="time-col">12:20</td><td><span class="location-text">明治神宮</span></td></tr>
+      <tr><td class="time-col">13:43</td><td><span class="location-text">代代木公園</span></td></tr>
+      <tr><td class="time-col">15:05</td><td><span class="location-text">POLÈNE 東京店</span></td></tr>
+      <tr><td class="time-col">16:13</td><td><span class="location-text">澀谷Scramble 交叉點</span></td></tr>
+      <tr><td class="time-col">17:16</td><td><span class="location-text">澀谷 SKY</span></td></tr>
+      <tr><td class="time-col">19:43</td><td><span class="location-text">鰻の成瀬カレッタ汐留店</span></td></tr>
+      <tr><td class="time-col">20:55</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
+    </table>
   </div>
 
-  <div class="day-card">
-    <h2 class="day-header">
-      [cite_start]<span>第 7 天 [cite: 100, 245]</span>
-      [cite_start]<span>2026/04/02 [cite: 103]</span>
-    </h2>
-    <ul class="schedule-list">
-      [cite_start]<li class="schedule-item"><span class="time">07:00</span><span class="location">新橋大和Roynet飯店 [cite: 105, 246]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">07:15</span><span class="location">大手仮休憩所(売店) [cite: 111, 247]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">08:46</span><span class="location">淺草寺 雷門 [cite: 115, 248]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">10:19</span><span class="location">吉備子屋-桃鈴 [cite: 118, 249]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">11:54</span><span class="location">上野阿美橫町 [cite: 122, 250]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">12:58</span><span class="location">一頭牛燒肉 房家 [cite: 127, 251]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">14:33</span><span class="location">玩具店 Yamashiroya [cite: 146, 252]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">15:35</span><span class="location">OS Drug 上野店藥妝店 [cite: 147, 253]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">16:52</span><span class="location">Brulee Merize [cite: 148, 254]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">18:01</span><span class="location">KITTE丸之內 [cite: 149, 256]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">19:09</span><span class="location">新橋大和Roynet飯店 [cite: 150, 257]</span></li>
-    </ul>
+  <div id="day7" class="tab-content">
+    <div class="hotel-info">🏨 住宿：新橋大和Roynet飯店</div>
+    <table>
+      <tr><td class="time-col">07:00</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
+      <tr><td class="time-col">07:15</td><td><span class="location-text">大手仮休憩所(売店)</span></td></tr>
+      <tr><td class="time-col">08:46</td><td><span class="location-text">淺草寺 雷門</span></td></tr>
+      <tr><td class="time-col">10:19</td><td><span class="location-text">吉備子屋-桃鈴</span></td></tr>
+      <tr><td class="time-col">11:54</td><td><span class="location-text">上野阿美橫町</span></td></tr>
+      <tr><td class="time-col">12:58</td><td><span class="location-text">一頭牛燒肉 房家</span></td></tr>
+      <tr><td class="time-col">14:33</td><td><span class="location-text">玩具店 Yamashiroya</span></td></tr>
+      <tr><td class="time-col">15:35</td><td><span class="location-text">OS Drug 上野店藥妝店</span></td></tr>
+      <tr><td class="time-col">16:52</td><td><span class="location-text">Brulee Merize</span></td></tr>
+      <tr><td class="time-col">18:01</td><td><span class="location-text">KITTE丸之內</span></td></tr>
+      <tr><td class="time-col">19:09</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
+    </table>
   </div>
 
-  <div class="day-card">
-    <h2 class="day-header">
-      [cite_start]<span>第 8 天 [cite: 151, 257]</span>
-      [cite_start]<span>2026/04/03 [cite: 152]</span>
-    </h2>
-    <ul class="schedule-list">
-      [cite_start]<li class="schedule-item"><span class="time">06:25</span><span class="location">新橋大和Roynet飯店 [cite: 153, 257]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">08:31</span><span class="location">成田國際機場 [cite: 154, 257]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">15:11</span><span class="location">高雄國際機場 [cite: 167, 257]</span></li>
-      [cite_start]<li class="schedule-item"><span class="time">17:10</span><span class="location">家 [cite: 171, 257]</span></li>
-    </ul>
+  <div id="day8" class="tab-content">
+    <div class="hotel-info">✈️ 賦歸</div>
+    <table>
+      <tr><td class="time-col">06:25</td><td><span class="location-text">新橋大和Roynet飯店</span></td></tr>
+      <tr><td class="time-col">08:31</td><td><span class="location-text">成田國際機場</span></td></tr>
+      <tr><td class="time-col">15:11</td><td><span class="location-text">高雄國際機場</span></td></tr>
+      <tr><td class="time-col">17:10</td><td><span class="location-text">家</span></td></tr>
+    </table>
   </div>
+
+  <script>
+    function openTab(tabId) {
+      // 隱藏所有內容
+      var contents = document.getElementsByClassName("tab-content");
+      for (var i = 0; i < contents.length; i++) {
+        contents[i].classList.remove("active");
+      }
+      
+      // 移除所有按鈕的 active 狀態
+      var btns = document.getElementsByClassName("tab-btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove("active");
+      }
+      
+      // 顯示點擊的內容與設定按鈕狀態
+      document.getElementById(tabId).classList.add("active");
+      event.currentTarget.classList.add("active");
+    }
+  </script>
 
 </body>
 </html>
